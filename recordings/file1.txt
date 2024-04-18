@@ -1,0 +1,7 @@
+Command-line interaction happens
+by virtue of a shell
+such as the venerable bash,
+minimalist ash/dash,
+the sexy zsh,
+or slick modern marvels
+like fish, nushell, elvish, xonsh...
