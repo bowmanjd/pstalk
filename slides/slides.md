@@ -236,7 +236,7 @@ layoutClass: gap-16
 
 # Let's build a Wikipedia search client
 
-```ps1
+```powershell
 Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)"
 ```
 
@@ -267,15 +267,15 @@ RelationLink      : {}
 ---
 
 ````md magic-move
-```ps1
+```powershell
 Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)"
 ```
 
-```ps1
+```powershell
 (Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)")
 ```
 
-```ps1
+```powershell
 (Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)").Content
 ```
 ````
@@ -289,11 +289,11 @@ Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=
 ---
 
 ````md magic-move
-```ps1
+```powershell
 (Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)").Content
 ```
 
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -301,7 +301,7 @@ $response = Invoke-WebRequest $url
 $response.Content
 ```
 
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -323,7 +323,7 @@ pages
 
 ````md magic-move
 
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -332,7 +332,7 @@ $body = $response.Content | ConvertFrom-Json
 $body
 ```
 
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -341,14 +341,14 @@ $body = $response.Content | ConvertFrom-Json
 $body
 ```
 
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
 $response = Invoke-RestMethod $url
 ```
 
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -404,7 +404,7 @@ thumbnail     : @{mimetype=image/svg+xml; width=60; height=89; duration=; url=//
 
 ---
 
-```ps1
+```powershell
 $pages | Format-Table
 ```
 
@@ -422,7 +422,7 @@ $pages | Format-Table
 
 ---
 
-```ps1
+```powershell
 $pages | Get-Member
 ```
 
@@ -448,7 +448,7 @@ title         NoteProperty string title=North Korea
 
 ---
 
-```ps1
+```powershell
 $body.pages.GetType()
 ```
 
@@ -463,15 +463,15 @@ True     True     Object[]                                 System.Array
 ---
 
 ````md magic-move
-```ps1
+```powershell
 $pages | ConvertTo-Html
 ```
 
-```ps1
+```powershell
 $pages | ConvertTo-Html -Fragment
 ```
 
-```ps1
+```powershell
 $pages | ConvertTo-Html -Fragment -Property Key, Title, Description
 ```
 ````
@@ -505,20 +505,20 @@ $pages | ConvertTo-Html -Fragment -Property Key, Title, Description
 ---
 
 ````md magic-move
-```ps1
+```powershell
 $pages = $pages | Select-Object -Last 4
 ```
 
-```ps1
+```powershell
 $pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
 ```
 
-```ps1
+```powershell
 $pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
 $pages
 ```
 
-```ps1
+```powershell
 $pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
 $pages.title
 ```
@@ -538,7 +538,7 @@ layout: center
 ---
 
 ````md magic-move
-```ps1
+```powershell
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -547,7 +547,7 @@ $pages = $response.pages | Sort-Object -Property title
 $pages
 ```
 
-```ps1
+```powershell
 function Find-WikipediaArticle
 {
   $query = "linksto:Shell_(computing)"
@@ -559,7 +559,7 @@ function Find-WikipediaArticle
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   $query = "linksto:Shell_(computing)"
@@ -571,7 +571,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param($query, $limit)
@@ -582,7 +582,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -596,7 +596,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -610,7 +610,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -628,7 +628,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -646,7 +646,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -664,7 +664,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -682,7 +682,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 function Enter-RabbitHole
 {
   param(
@@ -700,7 +700,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 <#
 .SYNOPSIS
 List English Wikipedia articles using the given search query.
@@ -728,7 +728,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1
+```powershell
 <#
 .SYNOPSIS
 List English Wikipedia articles using the given search query.
@@ -758,7 +758,7 @@ function Enter-RabbitHole
 }
 ```
 
-```ps1{all|12,28|14-22|25|23|26-27|1-11,15,19|all} {lines:true}
+```powershell {all|12,28|14-22|25|23|26-27|1-11,15,19|all}{lines:true}
 <#
 .SYNOPSIS
 List English Wikipedia articles using the given search query.
