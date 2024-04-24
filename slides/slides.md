@@ -534,6 +534,263 @@ Operating system
 </div>
 
 ---
+layout: center
+---
+
+````md magic-move
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-RestMethod $url
+$pages = $response.pages | Sort-Object -Property title
+$pages
+```
+
+```ps1
+function Find-WikipediaArticle
+{
+  $query = "linksto:Shell_(computing)"
+  $limit = 5
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  $query = "linksto:Shell_(computing)"
+  $limit = 5
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param($query, $limit)
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    $query,
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    [string] $query,
+    [int] $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    [Parameter(Mandatory)]
+    [string]
+    $query,
+
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    [Parameter(Mandatory, ValueFromPipeline)]
+    [string]
+    $query,
+
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    [Parameter(Mandatory, ValueFromPipeline, HelpMessage="Please enter Wikipedia search query")]
+    [string]
+    $query,
+
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages.title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    [Parameter(Mandatory, ValueFromPipeline, HelpMessage="Please enter Wikipedia search query")]
+    [string]
+    $query,
+
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages | Select-Object -Property title
+}
+```
+
+```ps1
+function Enter-RabbitHole
+{
+  param(
+    [Parameter(Mandatory, ValueFromPipeline, HelpMessage="Please enter Wikipedia search query")]
+    [string]
+    $query,
+
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages | Select-Object -Property title, @{Name='url'; Expression = { "https://en.wikipedia.org/wiki/$($_.key)" }} 
+}
+```
+
+```ps1
+<#
+.SYNOPSIS
+List English Wikipedia articles using the given search query.
+.DESCRIPTION
+Yearning for a Wikipedia click-spiral, but can't stand to leave the terminal until you absolutely have to?
+With this Powershell script, query to your heart's content from the comfort of the command line.
+.EXAMPLE
+Enter-RabbitHole -limit 20 "linksto:Shell_(computing)"
+.LINK
+https://github.com/bowmanjd/pstalk/tree/main/slides/snippets
+#>
+function Enter-RabbitHole
+{
+  param(
+    [Parameter(Mandatory, ValueFromPipeline, HelpMessage="Please enter Wikipedia search query")]
+    [string]
+    $query,
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages | Select-Object -Property title, @{Name='url'; Expression = { "https://en.wikipedia.org/wiki/$($_.key)" }} 
+}
+```
+
+```ps1
+<#
+.SYNOPSIS
+List English Wikipedia articles using the given search query.
+.DESCRIPTION
+Yearning for a Wikipedia click-spiral, but can't stand to leave the terminal until you absolutely have to?
+With this Powershell script, query to your heart's content from the comfort of the command line.
+.EXAMPLE
+Enter-RabbitHole -limit 20 "linksto:Shell_(computing)"
+.LINK
+https://github.com/bowmanjd/pstalk/tree/main/slides/snippets
+#>
+function Enter-RabbitHole
+{
+  param(
+    # Query to search for, such as what you would enter in a Wikipedia search online
+    [Parameter(Mandatory, ValueFromPipeline, HelpMessage="Please enter Wikipedia search query")]
+    [string]
+    $query,
+    # How many results to retrieve and display
+    [int]
+    $limit = 5
+  )
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages | Select-Object -Property title, @{Name='url'; Expression = { "https://en.wikipedia.org/wiki/$($_.key)" }} 
+}
+```
+
+```ps1{all|12,28|14-22|25|23|26-27|1-11,15,19|all} {lines:true}
+<#
+.SYNOPSIS
+List English Wikipedia articles using the given search query.
+.DESCRIPTION
+Yearning for a Wikipedia click-spiral, but can't stand to leave the terminal until you absolutely have to?
+With this Powershell script, query to your heart's content from the comfort of the command line.
+.EXAMPLE
+Enter-RabbitHole -limit 20 "linksto:Shell_(computing)"
+.LINK
+https://github.com/bowmanjd/pstalk/tree/main/slides/snippets
+#>
+function Enter-RabbitHole
+{
+  param(
+    # Query to search for, such as what you would enter in a Wikipedia search online
+    [Parameter(Mandatory, ValueFromPipeline, HelpMessage="Please enter Wikipedia search query")]
+    [string]
+    $query,
+    # How many results to retrieve and display
+    [int]
+    $limit = 5
+  )
+  $escapedQuery = [uri]::EscapeDataString($query)
+  $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$escapedQuery"
+  $response = Invoke-RestMethod $url
+  $pages = $response.pages | Sort-Object -Property title
+  $pages | Select-Object -Property title, @{Name='url'; Expression = { "https://en.wikipedia.org/wiki/$($_.key)" }} 
+}
+```
+````
+
+---
 
 # Notable Powershell Modules
 
