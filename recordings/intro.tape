@@ -55,7 +55,7 @@
 #   Hide                            Hide the subsequent commands from the output
 #   Show                            Show the subsequent commands in the output
 
-Output aliases.gif
+Output intro.webm
 
 Require pwsh
 
@@ -73,16 +73,22 @@ Enter
 Sleep 1s
 Type "echo 'Command-line interaction happens' > file1.txt"
 Enter
+Sleep 1s
 Type "echo 'by virtue of a shell' >> file1.txt"
 Enter
+Sleep 1s
 Type "echo 'such as the venerable bash,' >> file1.txt"
 Enter
+Sleep 1s
 Type "echo 'minimalist ash/dash,' >> file1.txt"
 Enter
+Sleep 1s
 Type "echo 'the sexy zsh,' >> file1.txt"
 Enter
+Sleep 1s
 Type "echo 'or slick modern marvels' >> file1.txt"
 Enter
+Sleep 1s
 Type "echo 'like fish, nushell, elvish, xonsh...' >> file1.txt"
 Enter
 
@@ -94,22 +100,19 @@ Type "cat file1.txt"
 Sleep 1s
 Enter
 
-Sleep 2s
+Sleep 3s
 Type "# or this currently running shell"
 Enter
-Sleep 1s
+Sleep 2s
 Type "# guess who?"
 Enter
 
 Sleep 1s
 Type "ps -p $PID"
 Enter
-Sleep 5s
+Sleep 10s
 
 Sleep 1s
 Type "$PSVersionTable"
 Enter
 Sleep 2s
-
-
-Sleep 6s

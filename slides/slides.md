@@ -144,10 +144,11 @@ layout: section
 
 - Use `Get-Help` command to access documentation
 - `Get-Help Get-Command` finds help for the command `Get-Command`
-- `Get-Help array` searches for docs about arrays
-- `Get-Help about_*` will show results that start with "about_"
-- `Get-Help -Online Get-Member` opens a web page about `Get-Member`
 - `Help` is the same as `Get-Help`, but paged.
+- `Help array` searches for docs about arrays
+- `Help about_*` will show results that start with "about_"
+- `Help -Online Get-Member` opens a web page about `Get-Member`
+- `Help -Examples Invoke-RestMethod` shows examples for `irm` 
 - `Update-Help` to periodically update the local docs
 
 ---
@@ -233,6 +234,307 @@ layoutClass: gap-16
 
 ---
 
+# Let's build a Wikipedia search client
+
+```ps1
+Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)"
+```
+
+<div v-click>
+```txt
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"pages":[{"id":21255,"key":"North_Korea","title":"North Korea","excerpt":"North Korea, officially the Democratic People's Republic of Korea (DPRK), 
+                    is a country in East Asia. It constitutes the north…
+RawContent        : HTTP/1.1 200 OK
+                    Date: Fri, 19 Apr 2024 00:31:53 GMT
+                    Server: mw1404.eqiad.wmnet
+                    X-Content-Type-Options: nosniff
+                    Cache-Control: no-cache
+                    Access-Control-Allow-Origin: *
+                    Vary: Accept-Encoding
+                    Age: 0
+                    X-Cac…
+Headers           : {[Date, System.String[]], [Server, System.String[]], [X-Content-Type-Options, System.String[]], [Cache-Control, System.String[]]…}
+Images            : {}
+InputFields       : {}
+Links             : {}
+RawContentLength  : 2096
+RelationLink      : {}
+```
+</div>
+
+---
+
+````md magic-move
+```ps1
+Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)"
+```
+
+```ps1
+(Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)")
+```
+
+```ps1
+(Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)").Content
+```
+````
+
+<div v-click>
+```ansi{all}{maxHeight:'26.5rem'}
+{"pages":[{"id":21255,"key":"North_Korea","title":"North Korea","excerpt":"North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitutes the northern half of the Korean Peninsula","matched_title":null,"description":"Country in East Asia","thumbnail":{"mimetype":"image/svg+xml","width":60,"height":30,"duration":null,"url":"//upload.wikimedia.org/wikipedia/commons/thumb/5/51/Flag_of_North_Korea.svg/60px-Flag_of_North_Korea.svg.png"}},{"id":18890,"key":"Microsoft_Windows","title":"Microsoft Windows","excerpt":"Microsoft Windows is a product line of proprietary graphical operating systems developed and marketed by Microsoft. It is grouped into families and sub-families","matched_title":null,"description":"Computer operating systems","thumbnail":null},{"id":20640,"key":"MacOS","title":"MacOS","excerpt":"macOS (/ˌmækoʊˈɛs/ MAK-oh-ESS), originally Mac OS X, previously shortened as OS X, is an operating system developed and marketed by Apple since 2001. It","matched_title":null,"description":"Operating system for Apple computers","thumbnail":null},{"id":6097297,"key":"Linux","title":"Linux","excerpt":"Linux (/ˈlɪnʊks/ LIN-uuks) is a family of open-source Unix-like operating systems based on the Linux kernel, an operating system kernel first released","matched_title":null,"description":"Family of Unix-like operating systems","thumbnail":{"mimetype":"image/svg+xml","width":60,"height":71,"duration":null,"url":"//upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/60px-Tux.svg.png"}},{"id":22194,"key":"Operating_system","title":"Operating system","excerpt":"An operating system (OS) is system software that manages computer hardware and software resources, and provides common services for computer programs.","matched_title":null,"description":"Software that manages computer hardware resources","thumbnail":{"mimetype":"image/svg+xml","width":60,"height":89,"duration":null,"url":"//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/60px-Operating_system_placement.svg.png"}}]}
+```
+</div>
+
+---
+
+````md magic-move
+```ps1
+(Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)").Content
+```
+
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-WebRequest $url
+$response.Content
+```
+
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-WebRequest $url
+$body = $response.Content | ConvertFrom-Json
+$body
+```
+````
+
+<div v-click>
+```ansi{all}{maxHeight:'26.5rem'}
+pages
+-----
+{@{id=21255; key=North_Korea; title=North Korea; excerpt=North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitute…
+```
+</div>
+
+---
+
+````md magic-move
+
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-WebRequest $url
+$body = $response.Content | ConvertFrom-Json
+$body
+```
+
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-RestMethod $url
+$body = $response.Content | ConvertFrom-Json
+$body
+```
+
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-RestMethod $url
+```
+
+```ps1
+$query = "linksto:Shell_(computing)"
+$limit = 5
+$url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
+$response = Invoke-RestMethod $url
+$pages = $response.pages
+$pages
+```
+````
+
+<div v-click>
+```ansi{all}{maxHeight:'21.5rem'}
+id            : 21255
+key           : North_Korea
+title         : North Korea
+excerpt       : North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitutes the northern half of the Korean Peninsula
+matched_title : 
+description   : Country in East Asia
+thumbnail     : @{mimetype=image/svg+xml; width=60; height=30; duration=; url=//upload.wikimedia.org/wikipedia/commons/thumb/5/51/Flag_of_North_Korea.svg/60px-Flag_of_North_Korea.svg.png}
+
+id            : 18890
+key           : Microsoft_Windows
+title         : Microsoft Windows
+excerpt       : Microsoft Windows is a product line of proprietary graphical operating systems developed and marketed by Microsoft. It is grouped into families and sub-families
+matched_title : 
+description   : Computer operating systems
+thumbnail     : 
+
+id            : 20640
+key           : MacOS
+title         : MacOS
+excerpt       : macOS (/ˌmækoʊˈɛs/ MAK-oh-ESS), originally Mac OS X, previously shortened as OS X, is an operating system developed and marketed by Apple since 2001. It
+matched_title : 
+description   : Operating system for Apple computers
+thumbnail     : 
+
+id            : 6097297
+key           : Linux
+title         : Linux
+excerpt       : Linux (/ˈlɪnʊks/ LIN-uuks) is a family of open-source Unix-like operating systems based on the Linux kernel, an operating system kernel first released
+matched_title : 
+description   : Family of Unix-like operating systems
+thumbnail     : @{mimetype=image/svg+xml; width=60; height=71; duration=; url=//upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/60px-Tux.svg.png}
+
+id            : 22194
+key           : Operating_system
+title         : Operating system
+excerpt       : An operating system (OS) is system software that manages computer hardware and software resources, and provides common services for computer programs.
+matched_title : 
+description   : Software that manages computer hardware resources
+thumbnail     : @{mimetype=image/svg+xml; width=60; height=89; duration=; url=//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/60px-Operating_system_placement.svg.png}
+```
+</div>
+
+---
+
+```ps1
+$pages | Format-Table
+```
+
+<div v-click>
+```text{all}{maxHeight:'26.5rem'}
+     id key               title             excerpt
+     -- ---               -----             -------                                                                                                                         
+  21255 North_Korea       North Korea       North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitutes the norther…
+  18890 Microsoft_Windows Microsoft Windows Microsoft Windows is a product line of proprietary graphical operating systems developed and marketed by Microsoft. It is group…
+  20640 MacOS             MacOS             macOS (/ˌmækoʊˈɛs/ MAK-oh-ESS), originally Mac OS X, previously shortened as OS X, is an operating system developed and markete…
+6097297 Linux             Linux             Linux (/ˈlɪnʊks/ LIN-uuks) is a family of open-source Unix-like operating systems based on the Linux kernel, an operating syste…
+  22194 Operating_system  Operating system  An operating system (OS) is system software that manages computer hardware and software resources, and provides common services…
+```
+</div>
+
+---
+
+```ps1
+$pages | Get-Member
+```
+
+<div v-click>
+```text{all}{maxHeight:'26.5rem'}
+   TypeName: System.Management.Automation.PSCustomObject
+
+Name          MemberType   Definition
+----          ----------   ----------
+Equals        Method       bool Equals(System.Object obj)
+GetHashCode   Method       int GetHashCode()
+GetType       Method       type GetType()
+ToString      Method       string ToString()
+description   NoteProperty string description=Country in East Asia
+excerpt       NoteProperty string excerpt=North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitutes the northern …
+id            NoteProperty long id=21255
+key           NoteProperty string key=North_Korea
+matched_title NoteProperty object matched_title=null
+thumbnail     NoteProperty System.Management.Automation.PSCustomObject thumbnail=@{mimetype=image/svg+xml; width=60; height=30; duration=; url=//upload.wikimedia.org/wikip…
+title         NoteProperty string title=North Korea
+```
+</div>
+
+---
+
+```ps1
+$body.pages.GetType()
+```
+
+<div v-click>
+```text{all}{maxHeight:'26.5rem'}
+IsPublic IsSerial Name                                     BaseType
+-------- -------- ----                                     --------
+True     True     Object[]                                 System.Array
+```
+</div>
+
+---
+
+````md magic-move
+```ps1
+$pages | ConvertTo-Html
+```
+
+```ps1
+$pages | ConvertTo-Html -Fragment
+```
+
+```ps1
+$pages | ConvertTo-Html -Fragment -Property Key, Title, Description
+```
+````
+
+<div v-click>
+```html
+<table>
+<colgroup><col/><col/><col/></colgroup>
+<tr><th>key</th><th>title</th><th>description</th></tr>
+<tr><td>North_Korea</td><td>North Korea</td><td>Country in East Asia</td></tr>
+<tr><td>Microsoft_Windows</td><td>Microsoft Windows</td><td>Computer operating systems</td></tr>
+<tr><td>MacOS</td><td>MacOS</td><td>Operating system for Apple computers</td></tr>
+<tr><td>Linux</td><td>Linux</td><td>Family of Unix-like operating systems</td></tr>
+<tr><td>Operating_system</td><td>Operating system</td><td>Software that manages computer hardware resources</td></tr>
+</table>
+```
+</div>
+
+---
+
+<table>
+<colgroup><col/><col/><col/></colgroup>
+<tr><th>key</th><th>title</th><th>description</th></tr>
+<tr><td>North_Korea</td><td>North Korea</td><td>Country in East Asia</td></tr>
+<tr><td>Microsoft_Windows</td><td>Microsoft Windows</td><td>Computer operating systems</td></tr>
+<tr><td>MacOS</td><td>MacOS</td><td>Operating system for Apple computers</td></tr>
+<tr><td>Linux</td><td>Linux</td><td>Family of Unix-like operating systems</td></tr>
+<tr><td>Operating_system</td><td>Operating system</td><td>Software that manages computer hardware resources</td></tr>
+</table>
+
+---
+
+````md magic-move
+```ps1
+$pages = $pages | Select-Object -Last 4
+```
+
+```ps1
+$pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
+```
+
+```ps1
+$pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
+$pages
+```
+
+```ps1
+$pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
+$pages.title
+```
+````
+
+<div v-click>
+```text
+Linux
+MacOS
+Microsoft Windows
+Operating system
+```
+</div>
+
+---
+
 # Notable Powershell Modules
 
 - [dbatools.io](https://dbatools.io/)
@@ -247,3 +549,5 @@ layoutClass: gap-16
 - [Pode](https://badgerati.github.io/Pode/) A Powershell web framework!?
 
 ---
+
+
