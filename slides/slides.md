@@ -46,9 +46,17 @@ hideInToc: true
 
 # ps.bowmanjd.com
 
+<!--
+
+This is the link to this slide deck as well as a repo with a couple example scripts in it, and my contact info. Feel free to reach out any time.
+
+-->
+
+---
+layout: full
 ---
 
-<Toc minDepth="1" maxDepth="2"></Toc>
+<Toc minDepth="1" maxDepth="2" style="font-size: 60%"></Toc>
 
 ---
 layout: center
