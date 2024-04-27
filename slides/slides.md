@@ -25,7 +25,7 @@ hideInToc: true
 
 </div>
 
-## A story of Powershell and growing to respect it
+## How I unintentionally learned to love Powershell
 
 ps.bowmanjd.com
 
@@ -62,7 +62,142 @@ layout: full
 layout: center
 ---
 
-![shell intro](/intro.gif){v-click}
+<SlidevVideo autoplay autoreset='slide'>
+  <source src="intro.webm" type="video/webm" />
+</SlidevVideo>
+
+---
+layout: image
+image: /windows-automation.png
+backgroundSize: contain
+---
+
+<!--
+My Powershell story starts before Powershell. And while no one's Powershell experience needs to start with Microsoft Windows anymore, mine did.
+
+In 2004, in my mid-twenties, I stumbled into a job as an IT technician in a school; responsibilities included managing Windows servers. Years before that, I had been bitten by the Linux bug, and was already drunk on the power of configuring everything with text files, and automating anything with the likes of Bash, Perl, Python. So I came to the world of Windows Servers itching to automate. And the story was not good.
+
+Bottom line: Windows had a miles-wide product gap: it was very difficult, and sometimes impossible, to easily, repeatably, deterministically automate all the things. In fact, sometimes I needed to resort to automating by sending mouse clicks and keyboard shortcuts to specific windows. Microsoft said Windows had a shell. But they always meant a graphical shell. Which looks pretty, but is quite difficult to automate.
+-->
+
+---
+layout: quote
+---
+
+> When Microsoft reached out to me, I said "no."
+> 
+> "What do you mean, 'no'?"
+> 
+> "Well, I don't want to talk to you."
+> 
+> "Well, why not?"
+> 
+> "Because your software is \[rubbish\] and I don't want to have anything to do with it. I don't want to work with \[rubbish\] software... it's an embarrassment."
+
+(Jeffrey Snover, inventor of Powershell, on how he came to Microsoft)
+
+<!--
+And so the story of Powershell begins.
+-->
+
+---
+layout: center
+---
+
+```powershell
+# List all users in the "Students" Organizational Unit
+Get-ADUser -Filter * -SearchBase "OU=Students,OU=UserAccounts,DC=SCHOOL,DC=ORG"
+
+# List the IP addresses of all computers with a name that starts with DC
+Get-ADComputer -Filter 'Name -like "DC*"' -Properties IPv4Address, IPv6Address
+```
+
+<!--
+My first encounter with Powershell was twelve years later, as an IT director in another school. It was a Windows Active Directory environment. Sometimes I just didn't want to fire up a bloated GUI application to do a thing, or I wanted more control, and I found that this thing called Powershell had moved in to fill the Windows automation product gap I had noticed earlier. 
+
+So I used commands, on occasions, like `Get-ADUser` and `Get-ADComputer`. And assorted Active Directory commands to query and update users and computers. Just right there on the command line, and occasionally in short scripts. I treated it like a helpful toy.
+
+-->
+
+---
+layout: image
+image: /ansible.svg
+backgroundSize: contain
+---
+
+[Using Ansible with Windows](https://docs.ansible.com/ansible/latest/os_guide/windows_usage.html)
+
+<!--
+
+We had far more Linux servers than we had Windows servers, though, and I started to learn Ansible, a popular configuration management tool. And, lo and behold, Ansible also had some support (quite a bit more now) for Windows!
+
+- For Linux, BSD, Mac, and the like, Ansible uses Python under the hood
+- For Windows, Ansible uses Powershell. So, maybe this Powershell thing wasn't just a joke.
+
+---
+layout: image
+image: /windows-admin.jpg
+backgroundSize: contain
+---
+
+<!--
+And that is a starting place for many Powershell users. They are strung out IT people just trying to get handle on things.
+
+Powershell is much bigger than that, as I find out later. But if you do a casual web search, most of your results will be that exact category: desperate Windows administrators, in dire need of real control and automation.
+
+A few things I noticed about Powershell right from the beginning:
+
+- It was comprehensive. All the levers are available. Unlike earlier experiences, where you could do some automation, but for real control you had to open a window and grip the mouse. Powershell commands covered every feature, and sometimes more than the UI.
+- I had a network administrator who started using Powershell. That was a head-scratcher for me because he knew perfectly good Python. One day he comments something like, "you know, I really like Powershell. I can really get things done."
+- I think he was referring to the systemic coverage I already called out, but also the ease with which one can learn Powershell because it is elegantly designed
+
+-->
+
+---
+
+# cmdlets
+
+- `Verb-Noun`
+- Find all the verbs with the `Get-Verb` command
+- Nouns might be anything
+- Example: `Import-Csv`
+- Example: `Add-Content`
+- (the word "cmdlets" has great SEO)
+
+---
+
+# [Get-Help](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-help)
+
+- Use `Get-Help` command to access documentation
+- `Get-Help Get-Command` finds help for the command `Get-Command`
+- `Help` is the same as `Get-Help`, but paged.
+- `Help array` searches for docs about arrays
+- `Help about_*` will show results that start with "about_"
+- `Help -Online Get-Member` opens a web page about `Get-Member`
+- `Help -Examples Invoke-RestMethod` shows examples for `irm` 
+- `Update-Help` to periodically update the local docs
+
+<!--
+
+Powershell has a ton of very verbose and very discoverable documentation, built in, updateable, and online.
+
+-->
+
+---
+layout: center
+---
+
+<SlidevVideo autoplay autoreset='slide'>
+  <source src="pshelp.webm" type="video/webm" />
+</SlidevVideo>
+
+<!--
+Get-Help (or Help if you want to view it with a pager) can be followed with a command name.
+
+In this case, `Get-Help`. Currently, there are only a few pages, and a note about "only partial help". So, we enter `Get-Help` and the docs download.
+
+Now, the same help article is much more verbose, including examples.
+-->
 
 ---
 layout: image
@@ -146,34 +281,6 @@ layout: section
 
 # Documentation
 
----
-
-# [Get-Help](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-help)
-
-- Use `Get-Help` command to access documentation
-- `Get-Help Get-Command` finds help for the command `Get-Command`
-- `Help` is the same as `Get-Help`, but paged.
-- `Help array` searches for docs about arrays
-- `Help about_*` will show results that start with "about_"
-- `Help -Online Get-Member` opens a web page about `Get-Member`
-- `Help -Examples Invoke-RestMethod` shows examples for `irm` 
-- `Update-Help` to periodically update the local docs
-
----
-layout: center
----
-
-<SlidevVideo autoplay autoreset='slide'>
-  <source src="pshelp.webm" type="video/webm" />
-</SlidevVideo>
-
-<!--
-Get-Help (or Help if you want to view it with a pager) can be followed with a command name.
-
-In this case, `Get-Help`. Currently, there are only a few pages, and a note about "only partial help". So, we enter `Get-Help` and the docs download.
-
-Now, the same help article is much more verbose, including examples.
--->
 
 ---
 
@@ -797,6 +904,14 @@ function Enter-RabbitHole
 }
 ```
 ````
+
+---
+layout: center
+---
+
+<SlidevVideo autoplay autoreset='slide'>
+  <source src="rabbithole.webm" type="video/webm" />
+</SlidevVideo>
 
 ---
 

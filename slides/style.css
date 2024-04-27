@@ -1,5 +1,6 @@
-
-body, li, p {
+body,
+li,
+p {
   font-size: 150% !important;
   line-height: 150% !important;
 }
@@ -8,4 +9,9 @@ code.language-ansi {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   word-break: break-all;
+}
+
+.biggie {
+  font-size: 300% !important;
+  line-height: 200% !important;
 }
