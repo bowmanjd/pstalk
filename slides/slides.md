@@ -16,7 +16,6 @@ class: text-center
 hideInToc: true
 ---
 
-
 # Reluctant Powersheller
 
 <div class="justify-center flex">
@@ -30,7 +29,7 @@ hideInToc: true
 ps.bowmanjd.com
 
 <!--
-It is an honor to be here. I am Jonathan Bowman. I am a hobbyist developer. I have also been a teacher, preacher, web developer, IT director, CRM consultant, and now I write SQL all day at Cargas. Cargas is the most humane and thoughtful place I have ever worked with technology, and I am proud to be there. I am also proud of my engagement with Neovim, Linux, Python, bash, Rust, even trying to learn a little Go these days (the language, not the game). And today I am sharing with you about Powershell, which I am ambivalent about. But I have grown to a place where I have to say: I like Powershell. I recommend Powershell for a variety of use cases. And I genuinely enjoy working with the syntax.
+It is an honor to be here. I am Jonathan Bowman. I am a hobbyist developer. I have also been a teacher, preacher, web developer, IT director, CRM consultant, and now I write SQL all day at Cargas. Cargas is the most humane and thoughtful place I have ever worked with technology, and I am proud to be there. I get excited about Vim, Linux, Python, bash, Rust, even trying to learn a little Go these days (the language, not the game). And today I am sharing with you about Powershell, which I am ambivalent about. But I have grown to a place where I have to say: I like Powershell. I recommend Powershell for a variety of use cases. And I genuinely enjoy working with the syntax.
 -->
 
 ---
@@ -56,15 +55,156 @@ This is the link to this slide deck as well as a repo with a couple example scri
 layout: full
 ---
 
-<Toc minDepth="1" maxDepth="2" style="font-size: 60%"></Toc>
+<Toc minDepth="1" maxDepth="1" style="font-size: 60%"></Toc>
 
 ---
 layout: center
+hideInToc: true
 ---
 
 <SlidevVideo autoplay autoreset='slide'>
   <source src="intro.webm" type="video/webm" />
 </SlidevVideo>
+
+---
+layout: quote
+---
+
+> I searched my .bash_history for the line with the highest ratio of special characters to regular alphanumeric characters, and the winner was: `cat out.txt | grep -o "[[(].*[])][^)]]*$"` ... I have no memory of this and no idea what I was trying to do, but I sure hope it worked.
+
+([Randall Munroe](https://m.xkcd.com/1638/))
+
+---
+layout: section
+---
+
+# What is a Shell?
+
+---
+layout: two-cols-header
+---
+
+## Difference: shell and terminal
+
+A terminal \[emulator\] is the device or software application that "wraps" the shell. Examples:
+
+::left::
+
+- Mac: Terminal or [iTerm2](https://iterm2.com/)
+- Windows Terminal
+- Gnome Terminal, Konsole, xterm, rxvt
+- Linux, Mac: [Warp](https://www.warp.dev/)
+- Linux, Mac: [Kitty](https://sw.kovidgoyal.net/kitty/)
+
+::right::
+
+- [Alacritty](https://alacritty.org/)
+- [Wezterm](https://wezfurlong.org/wezterm/index.html)
+- [Hyper](https://hyper.is/)
+
+---
+layout: two-cols-header
+---
+
+## Shell
+
+An interpreter that provides a command-line user interface for operating systems. Examples:
+
+::left::
+
+- [bash](https://www.gnu.org/software/bash/)
+- [zsh](https://www.zsh.org/)
+- [tcsh](https://www.tcsh.org/)
+- [sh](https://man.freebsd.org/cgi/man.cgi?query=sh)/[ash](https://www.in-ulm.de/~mascheck/various/ash/)/[dash](https://git.kernel.org/pub/scm/utils/dash/dash.git)
+- [ksh](http://kornshell.com/)
+
+::right::
+
+- [fish](https://fishshell.com/)
+- [Nushell](https://www.nushell.sh/)
+- [elvish](https://elv.sh/)
+- [xonsh](https://xon.sh/)
+- [oils](https://www.oilshell.org/)
+- [so many more...](https://github.com/oilshell/oil/wiki/Alternative-Shells)
+
+---
+layout: image
+image: /shell-unix-programming-env.png
+backgroundSize: contain
+---
+
+<!--
+From the 1984 book _The Unix Programming Environmment_ by Brian Kernighan and Rob Pike:
+
+- Although most users think of the shell as an interactive command interpreter, it is really a programming language in which each statement runs a command. Because it must satisfy both the interactive and programming aspects of command execution, it is a strange language, shaped as much by history as by design. [Both an interactive interpreter, like a REPL (read-eval-print loop), and a programming language. And it evolves over time due to dynamic needs.]
+- The range of its application leads to an unsettling quantity of detail in the language, but you don't need to understand every nuance to use it effectively. [Some good encouragement, there. Just wade in or even dive in]
+
+-->
+
+---
+layout: two-cols
+---
+
+## Typically part of shell
+
+- cd
+- ls
+- echo
+- help
+- pwd
+- read
+
+::right::
+
+<span v-click>
+
+## Not usually baked-in
+
+- cat
+- grep
+- tail, head
+- more, less
+- sed, awk, vi
+
+</span>
+
+<!--
+
+When we use a command-line shell, it is easy to think that all the tools we are using are baked into the shell. But you can change your shell, and keep using the very same grep, and the very same pager you are used to.
+
+This is both a benefit and a problem. Love the personalization, but when it comes to sharing... How to you know which grep your friends have?
+
+-->
+
+---
+layout: section
+---
+
+# Why another shell?
+
+---
+
+## Option fatigue
+
+Why make another `________________` ?
+<br><span v-click>...web framework</span><span v-click> ...shell</span><span v-click> ...flavor of hummus</span>
+
+<v-clicks>
+
+- Diverse needs
+- Fun and enjoyment
+- Divergence is good
+  - (Does consolidation and monopoly serve us well?)
+  - Heterogeneity is sometimes (often?) necessary
+- Just choose Cinnamon Life
+
+</v-clicks>
+
+---
+layout: section
+---
+
+# The Windows Automation Gap
 
 ---
 layout: image
@@ -75,7 +215,7 @@ backgroundSize: contain
 <!--
 My Powershell story starts before Powershell. And while no one's Powershell experience needs to start with Microsoft Windows anymore, mine did.
 
-In 2004, in my mid-twenties, I stumbled into a job as an IT technician in a school; responsibilities included managing Windows servers. Years before that, I had been bitten by the Linux bug, and was already drunk on the power of configuring everything with text files, and automating anything with the likes of Bash, Perl, Python. So I came to the world of Windows Servers itching to automate. And the story was not good.
+In 2004, in my mid-twenties, I stumbled into a job as an IT technician in a school; responsibilities included managing Windows servers. Years before that, I had been bitten by the Linux bug, and was already obsessed with configuring everything with text files, and automating anything with the likes of Bash, Perl, Python. So I came to the world of Windows Servers itching to automate. And the story was not good.
 
 Bottom line: Windows had a miles-wide product gap: it was very difficult, and sometimes impossible, to easily, repeatably, deterministically automate all the things. In fact, sometimes I needed to resort to automating by sending mouse clicks and keyboard shortcuts to specific windows. Microsoft said Windows had a shell. But they always meant a graphical shell. Which looks pretty, but is quite difficult to automate.
 -->
@@ -101,7 +241,20 @@ And so the story of Powershell begins.
 -->
 
 ---
+layout: image
+image: /shell-of-an-idea.jpg
+backgroundSize: contain
+---
+
+<!-- 
+By the way, if you like to read about promising technologies being birthed in dysfunctional organizations, you might find this book interesting.
+
+Or, if, like me, you just like to read historical non-fiction about command-line shells.
+-->
+
+---
 layout: center
+hideInToc: true
 ---
 
 ```powershell
@@ -115,7 +268,7 @@ Get-ADComputer -Filter 'Name -like "DC*"' -Properties IPv4Address, IPv6Address
 <!--
 My first encounter with Powershell was twelve years later, as an IT director in another school. It was a Windows Active Directory environment. Sometimes I just didn't want to fire up a bloated GUI application to do a thing, or I wanted more control, and I found that this thing called Powershell had moved in to fill the Windows automation product gap I had noticed earlier. 
 
-So I used commands, on occasions, like `Get-ADUser` and `Get-ADComputer`. And assorted Active Directory commands to query and update users and computers. Just right there on the command line, and occasionally in short scripts. I treated it like a helpful toy.
+So I used commands, on occasions, like `Get-ADUser` and `Get-ADComputer`. And assorted other Active Directory commands to query and update users and computers. Just right there on the command line, and occasionally in short scripts. I treated it like a helpful toy.
 
 -->
 
@@ -134,6 +287,12 @@ We had far more Linux servers than we had Windows servers, though, and I started
 - For Linux, BSD, Mac, and the like, Ansible uses Python under the hood
 - For Windows, Ansible uses Powershell. So, maybe this Powershell thing wasn't just a joke.
 
+That was one of my first moments of "maybe Powershell deserves a deeper look..."
+
+And soon I found myself turning to Powershell more and more often to interact and automate.
+
+-->
+
 ---
 layout: image
 image: /windows-admin.jpg
@@ -145,17 +304,43 @@ And that is a starting place for many Powershell users. They are strung out IT p
 
 Powershell is much bigger than that, as I find out later. But if you do a casual web search, most of your results will be that exact category: desperate Windows administrators, in dire need of real control and automation.
 
+-->
+
+---
+
+## Use case #1
+
+- You "have a friend" who could use a little more automation
+- Some of what they need to automate is Windows...
+- ...or they struggle with bash 🤭😲🧑‍💻
+
+<!--
+
+There are a lot of people who do not write code. Who do not think they can write code. And they start because they want to make their system administration a little easier. And Powershell is that gentle on-ramp for writing computer programs to make life better.
+
+There are people who might not pick up bash, but they might just pick up Powershell. The same argument could be made for Python or Ruby. Or a newer shell like fish, Nushell, etc.
+
+-->
+
+---
+layout: section
+---
+
+# A Gentle On-Ramp
+
+<!--
+
 A few things I noticed about Powershell right from the beginning:
 
 - It was comprehensive. All the levers are available. Unlike earlier experiences, where you could do some automation, but for real control you had to open a window and grip the mouse. Powershell commands covered every feature, and sometimes more than the UI.
-- I had a network administrator who started using Powershell. That was a head-scratcher for me because he knew perfectly good Python. One day he comments something like, "you know, I really like Powershell. I can really get things done."
-- I think he was referring to the systemic coverage I already called out, but also the ease with which one can learn Powershell because it is elegantly designed
+- I had a network engineer who started using Powershell. That was a head-scratcher for me because he knew perfectly good Python. One day he comments something like, "you know, I really like Powershell. I can really get things done."
+- I think he was referring to the systemic coverage I already called out, but also the ease with which one can learn Powershell because it is elegantly and deliberately designed
 
 -->
 
 ---
 
-# cmdlets
+## cmdlets
 
 - `Verb-Noun`
 - Find all the verbs with the `Get-Verb` command
@@ -166,7 +351,7 @@ A few things I noticed about Powershell right from the beginning:
 
 ---
 
-# [Get-Help](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-help)
+## [Get-Help](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-help)
 
 - Use `Get-Help` command to access documentation
 - `Get-Help Get-Command` finds help for the command `Get-Command`
@@ -200,18 +385,67 @@ Now, the same help article is much more verbose, including examples.
 -->
 
 ---
-layout: image
-image: /shell-unix-programming-env.png
+layout: fact
+---
+
+[learn.microsoft.com/powershell/](https://learn.microsoft.com/powershell/){style="font-size: 200%"}
+
+---
+layout: image-right
+image: /ps-month.jpg
 backgroundSize: contain
 ---
 
-<!--
-From the 1984 book _The Unix Programming Environmment_ by Brian Kernighan and Rob Pike:
+[Learn Powershell<br>in a Month of Lunches](https://www.manning.com/books/learn-powershell-in-a-month-of-lunches)
 
-- Although most users think of the shell as an interactive command interpreter, it is really a programming language in which each statement runs a command. Because it must satisfy both the interactive and programming aspects of command execution, it is a strange language, shaped as much by history as by design. [Both an interactive interpreter, like a REPL (read-eval-print loop), and a programming language. And it evolves over time due to dynamic needs.]
-- The range of its application leads to an unsettling quantity of detail in the language, but you don't need to understand every nuance to use it effectively. [Some good encouragement, there. Just wade in or even dive in]
+<!--
+
+I am currently reading this now and find I am learning new things in every chapter. But it is designed to be hospitable for those that have no programming experience.
 
 -->
+
+---
+layout: two-cols-header
+layoutClass: gap-16
+---
+
+## Laid back and folksy: Powershell MVA videos
+
+::left::
+
+![Getting Started with Powershell 3.0](/getting-started-with-powershell.png){style="height:200px"}
+
+[Getting Started with PowerShell 3.0](https://learn.microsoft.com/en-us/shows/GetStartedPowerShell3/)
+<br>([also on Youtube](https://www.youtube.com/watch?v=UVUd9_k9C6A&list=PL7T06JEc5PF6kusr3cg6eYqCAiU6ezVj5&index=2))
+
+::right::
+
+![Advanced Tools * Scripting with Powershell 3.0](/advanced-tools-and-scripting.png){style="height:200px"}
+
+[Advanced Tools & Scripting with PowerShell 3.0](https://learn.microsoft.com/en-us/shows/advpowershell3/)
+<br>([also on Youtube](https://www.youtube.com/watch?v=K4YDHFalAK8&list=PL7T06JEc5PF6kusr3cg6eYqCAiU6ezVj5&index=1))
+
+
+---
+layout: image-left
+image: /powershell-101.png
+backgroundSize: contain
+---
+
+## Powershell 101 book
+
+- [Read online for free](https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction)
+- [Also on LeanPub](https://leanpub.com/powershell101)
+
+---
+layout: image-right
+image: /learnps.png
+backgroundSize: contain
+---
+
+## Learn X in Y Minutes
+
+[learnxinyminutes.com/docs/powershell](https://learnxinyminutes.com/docs/powershell)
 
 ---
 layout: image
@@ -221,8 +455,9 @@ backgroundSize: contain
 
 <!--
 
+- So Powershell is intended to be easy to learn for Windows Admins who may have little experience with coding or command line.
 - what does a marketing team do when told to promote a command-line shell?
-- "Those who don't automate are doomed to repeat themselves" -- love this quote. Is true to the powershell community. It isn't competing so much with other shells, as it is competing with the practice of "clicking through your problems" which is rampant in Windows culture.
+- "Those who don't automate are doomed to repeat themselves" -- love this quote. Is true to the powershell community. It isn't competing so much with other shells, as it is competing with the practice of "clicking through your problems" which is rampant in Windows admin culture.
 
 -->
 
@@ -240,15 +475,36 @@ backgroundSize: contain
 -->
 
 ---
+layout: section
+---
 
-# Open Source
+# Cross-platform, Open Source
+
+---
+
+## Use case #2
+
+- You want to share a shell script and trust that it will work on a variety of platforms, even Windows
+- Maybe you write a bash script _and_ a Powershell script...
+- Or if all your friends already have Powershell...
+
+<!--
+
+I often find myself in a software shop where I am the lone Linux person. So, if I am surrounded by Mac people, and I want to share a script, I will make sure it works in zsh, or whatever runtimes I can count on, such as Python or Node.
+
+If surrounded by Windows people, powershell is a great choice. They can just run it. And I can still develop it on my OS of choice.
+-->
+
+---
+
+## Open Source
 
 - [github.com/PowerShell/PowerShell](https://github.com/PowerShell/PowerShell)
 - [github.com/MicrosoftDocs/PowerShell-Docs](https://github.com/MicrosoftDocs/PowerShell-Docs)
 
 ---
 
-# Installation on various platforms
+## Installation on various platforms
 
 - Windows: `winget install Microsoft.PowerShell`
 - Mac: `brew install powershell/tap/powershell`
@@ -262,43 +518,73 @@ Powershell 5 is pre-installed on Windows. But the current cross-platform version
 
 ---
 
-# Editors
+## Editors
 
 - VS Code with [Powershell extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
 - Neovim works well (suggested plugins: mason, nvim-lspconfig (use `powershell_es`), mason-lspconfig
-- [Powershell for Sublime Text](https://github.com/SublimeText/PowerShell/)
+- [Sublime with LSP](https://github.com/sublimelsp/LSP-PowerShellEditorServices)
+- [In LSP mode for Emacs](https://emacs-lsp.github.io/lsp-mode/page/lsp-pwsh/)
 - Language Server: [github.com/PowerShell/PowerShellEditorServices](https://github.com/PowerShell/PowerShellEditorServices)
 
 <!--
 
-Powershell and VS Code certainly seem made for each other. I enjoy writing Powershell in Neovim. There is a Powershell package for Sublime text, although I am uncertain how well it works and how up to date it is. Really, though, any editor with LSP support should be able to work with the PowerShellEditorServices language server.
+Powershell and VS Code certainly seem made for each other. I enjoy writing Powershell in Neovim. Any editor with LSP support should be able to work with the PowerShellEditorServices language server.
 
 -->
+
+---
+layout: fact
+---
+
+## Use case #3
+
+You or an accomplice needs to accomplish a specific task for which Powershell has a relevant and well-maintained module or script.
+
+---
+layout: two-cols-header
+---
+
+## Powershell Gallery at [powershellgallery.com](https://www.powershellgallery.com/)
+
+::left::
+
+- [dbatools.io](https://dbatools.io/)
+- [pester.dev](https://pester.dev/) (Testing framework)
+- [PSPGP](https://github.com/EvotecIT/PSPGP)
+- [Posh-ACME](https://poshac.me/docs/) (Let's Encrypt)
+- [ImportExcel](https://github.com/dfinke/ImportExcel)
+- [powershell-yaml](https://github.com/cloudbase/powershell-yaml)
+- [platyPS](https://github.com/PowerShell/platyPS) (docs in Markdown)
+- [Pansies](https://github.com/PoshCode/Pansies) (colors and emojis!)
+
+::right::
+
+- [MailoZaurr](https://github.com/EvotecIT/MailoZaurr) (SMTP, IMAP...)
+- [SimplySql](https://github.com/mithrandyr/SimplySql) (various db engines)
+- [PSWriteHTML](https://github.com/EvotecIT/PSWriteHTML)
+- [PS-TextTable](https://github.com/jjcarrier/PS-TextTable) (text to objects)
+- [PS-TableUI](https://github.com/jjcarrier/PS-TableUI) (TUI item selector)
+- [Pode](https://badgerati.github.io/Pode/) (web framework!?)
+- [Az](https://learn.microsoft.com/en-us/powershell/azure/)
+- [PSScriptAnalyzer](https://github.com/PowerShell/PSScriptAnalyzer)
 
 ---
 layout: section
 ---
 
-# Documentation
-
-
----
-
-Explore Online
-
-- [learn.microsoft.com/powershell/](https://learn.microsoft.com/powershell/)
-- [powershellgallery.com](https://www.powershellgallery.com/)
-- [.NET API browser](https://learn.microsoft.com/en-us/dotnet/api/)
-
----
-
-# Learn X in Y Minutes
-
-[learnxinyminutes.com/docs/powershell](https://learnxinyminutes.com/docs/powershell)
-
----
-
 # Community
+
+<!--
+
+For me, the hospitality of a language community is almost as important as the syntax and features of the language itself.
+
+In my experience, the Powershell community has been impressively welcoming and helpful.
+
+-->
+
+---
+
+## Discussions, Blogs...
 
 - [discord.com/invite/powershell](https://discord.com/invite/powershell)
 - [powershell.slack.com](https://powershell.slack.com/)
@@ -308,48 +594,32 @@ Explore Online
 
 ---
 
-# Streams
+## Streams
 
 - [Research Triangle Powershell Users Group](https://www.youtube.com/c/rtpsug)
 - [@PowershellOrg](https://www.youtube.com/@PowershellOrg)
 
 ---
-layout: two-cols-header
-layoutClass: gap-16
----
 
-# Laid back and folksy: Powershell MVA videos
-
-::left::
-
-![Getting Started with Powershell 3.0](/getting-started-with-powershell.png){style="height:200px"}
-
-[Getting Started with PowerShell 3.0](https://learn.microsoft.com/en-us/shows/GetStartedPowerShell3/)
-<br>([also on Youtube](https://www.youtube.com/watch?v=UVUd9_k9C6A&list=PL7T06JEc5PF6kusr3cg6eYqCAiU6ezVj5&index=2))
-
-::right::
-
-![Advanced Tools * Scripting with Powershell 3.0](/advanced-tools-and-scripting.png){style="height:200px"}
-
-[Advanced Tools & Scripting with PowerShell 3.0](https://learn.microsoft.com/en-us/shows/advpowershell3/)
-<br>([also on Youtube](https://www.youtube.com/watch?v=K4YDHFalAK8&list=PL7T06JEc5PF6kusr3cg6eYqCAiU6ezVj5&index=1))
-
----
-
-# The Powershell Podcast by PDQ
+## The Powershell Podcast by PDQ
 
 [The Powershell Podcast](https://www.pdq.com/resources/the-powershell-podcast/)
 
 ---
-
-# Powershell 101 book
-
-- [Available to read online for free](https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction)
-- [Also on LeanPub](https://leanpub.com/powershell101)
-
+layout: section
 ---
 
-# Let's build a Wikipedia search client
+# Wikipedia search client
+
+<!-- 
+
+The language features themselves have caused me to warm up to Powershell more than anything. So I thought I would write and incredibly useful tool in front of your very eyes. And highlight some interesting bits of the language as we go.
+
+So, let's build a Wikipedia search client
+
+-->
+
+---
 
 ```powershell
 Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)"
@@ -914,20 +1184,7 @@ layout: center
 </SlidevVideo>
 
 ---
-
-# Notable Powershell Modules
-
-- [dbatools.io](https://dbatools.io/)
-- [pester.dev](https://pester.dev/) (Testing framework)
-- [PSPGP](https://github.com/EvotecIT/PSPGP)
-- [Posh-ACME](https://poshac.me/docs/) (Let's Encrypt)
-- [ImportExcel](https://github.com/dfinke/ImportExcel)
-- [MailoZaurr](https://github.com/EvotecIT/MailoZaurr) (SMTP, POP3, IMAP...)
-- [SimplySql](https://github.com/mithrandyr/SimplySql) to query various db engines
-- [PS-TextTable](https://github.com/jjcarrier/PS-TextTable) (Convert text to PS objects)
-- [PS-TableUI](https://github.com/jjcarrier/PS-TableUI) (TUI item selector)
-- [Pode](https://badgerati.github.io/Pode/) A Powershell web framework!?
-
+layout: fact
 ---
 
-
+Thank you
