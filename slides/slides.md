@@ -613,7 +613,7 @@ layout: section
 
 <!-- 
 
-The language features themselves have caused me to warm up to Powershell more than anything. So I thought I would write and incredibly useful tool in front of your very eyes. And highlight some interesting bits of the language as we go.
+The language features themselves have caused me to warm up to Powershell more than anything. So I thought I would write and incredibly useful tool in front of your very eyes. And, as we go, highlight some bits of the language I have found attractive.
 
 So, let's build a Wikipedia search client
 
@@ -625,8 +625,7 @@ So, let's build a Wikipedia search client
 Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)"
 ```
 
-<div v-click>
-```txt
+```txt {hide|all|3-4}
 StatusCode        : 200
 StatusDescription : OK
 Content           : {"pages":[{"id":21255,"key":"North_Korea","title":"North Korea","excerpt":"North Korea, officially the Democratic People's Republic of Korea (DPRK), 
@@ -647,7 +646,18 @@ Links             : {}
 RawContentLength  : 2096
 RelationLink      : {}
 ```
-</div>
+
+<!--
+
+`Invoke-WebRequest` is a built-in Powershell cmdlet that functions a little like curl or wget, if you are familiar with those command-line http clients. Here we give it an API URL for Wikipedia, asking it to return a list of articles that link to the Shell (computing) article.
+
+And you might expect it to return JSON response body. I kinda does...
+
+[click] But it returns an object, not just text. In this output, on the left we see property names, on the right their values, such as headers, content length, and so on.
+
+[click] This Content property looks like it has the desired JSON response. How do we get just that?
+
+-->
 
 ---
 
@@ -665,11 +675,23 @@ Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=
 ```
 ````
 
-<div v-click>
-```ansi{all}{maxHeight:'26.5rem'}
+```ansi{hide|all|all}{maxHeight:'26.5rem'}
 {"pages":[{"id":21255,"key":"North_Korea","title":"North Korea","excerpt":"North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitutes the northern half of the Korean Peninsula","matched_title":null,"description":"Country in East Asia","thumbnail":{"mimetype":"image/svg+xml","width":60,"height":30,"duration":null,"url":"//upload.wikimedia.org/wikipedia/commons/thumb/5/51/Flag_of_North_Korea.svg/60px-Flag_of_North_Korea.svg.png"}},{"id":18890,"key":"Microsoft_Windows","title":"Microsoft Windows","excerpt":"Microsoft Windows is a product line of proprietary graphical operating systems developed and marketed by Microsoft. It is grouped into families and sub-families","matched_title":null,"description":"Computer operating systems","thumbnail":null},{"id":20640,"key":"MacOS","title":"MacOS","excerpt":"macOS (/ˌmækoʊˈɛs/ MAK-oh-ESS), originally Mac OS X, previously shortened as OS X, is an operating system developed and marketed by Apple since 2001. It","matched_title":null,"description":"Operating system for Apple computers","thumbnail":null},{"id":6097297,"key":"Linux","title":"Linux","excerpt":"Linux (/ˈlɪnʊks/ LIN-uuks) is a family of open-source Unix-like operating systems based on the Linux kernel, an operating system kernel first released","matched_title":null,"description":"Family of Unix-like operating systems","thumbnail":{"mimetype":"image/svg+xml","width":60,"height":71,"duration":null,"url":"//upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/60px-Tux.svg.png"}},{"id":22194,"key":"Operating_system","title":"Operating system","excerpt":"An operating system (OS) is system software that manages computer hardware and software resources, and provides common services for computer programs.","matched_title":null,"description":"Software that manages computer hardware resources","thumbnail":{"mimetype":"image/svg+xml","width":60,"height":89,"duration":null,"url":"//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/60px-Operating_system_placement.svg.png"}}]}
 ```
-</div>
+
+<!--
+
+Well, one way to do that is to encapsulate the command in parentheses...
+
+[click] Now we can consider which property we want to pull out. I believe it was the Content property.
+
+[click] This should give us just the content body...
+
+[click] And there it is. The resulting blob of good old JSON.
+
+[click] This is, for me, something that made Powershell a little offensive, but in the long term keeps drawing me in. While it can handle text input and output just fine, it's native inputs and outputs are typically in object form. We'll see more how the object-oriented nature of the outputs is both weird and helpful.
+
+-->
 
 ---
 
@@ -678,7 +700,7 @@ Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=
 (Invoke-WebRequest "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=5&q=linksto:Shell_(computing)").Content
 ```
 
-```powershell
+```powershell {all|1-2|3|4-5|all}
 $query = "linksto:Shell_(computing)"
 $limit = 5
 $url = "https://en.wikipedia.org/w/rest.php/v1/search/page?limit=$limit&q=$query"
@@ -696,13 +718,33 @@ $body
 ```
 ````
 
-<div v-click>
-```ansi{all}{maxHeight:'26.5rem'}
+```ansi{hide|all|1-2}{maxHeight:'26.5rem'}
 pages
 -----
 {@{id=21255; key=North_Korea; title=North Korea; excerpt=North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitute…
 ```
-</div>
+
+<!--
+
+Let's evolve this script by introducing variables for flexibility and readability.
+
+[click] Let's look at what we have done...
+
+[click] query and limit are now their own variables
+
+[click] Interpolating those variables in a string is fairly straightforward
+
+[click] And our response is a variable as well. 
+
+[click] Note that the response is still just raw JSON text though. Let's parse that JSON so we can better reference the values it contains...
+
+[click] There are a lot of built in converters in Powershell, ConvertFrom-Json is one we are using here. The body should now look like an object.
+
+[click] Which it is.
+
+[click] It has a single property, `pages`
+
+-->
 
 ---
 
@@ -919,7 +961,7 @@ Operating system
 </div>
 
 ---
-layout: center
+layout: none
 ---
 
 ````md magic-move
