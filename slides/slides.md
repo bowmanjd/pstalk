@@ -785,8 +785,7 @@ $pages
 ```
 ````
 
-<div v-click>
-```ansi{all}{maxHeight:'21.5rem'}
+```ansi{hide|all|1-7}{maxHeight:'21.5rem'}
 id            : 21255
 key           : North_Korea
 title         : North Korea
@@ -827,16 +826,38 @@ matched_title :
 description   : Software that manages computer hardware resources
 thumbnail     : @{mimetype=image/svg+xml; width=60; height=89; duration=; url=//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Operating_system_placement.svg/60px-Operating_system_placement.svg.png}
 ```
-</div>
+
+<!--
+
+So, for what we are doing there is a more relevant Powershell cmdlet than `Invoke-WebRequest`. It is called `Invoke-RestMethod` and has a lot of built-in features useful for calling out to HTTP APIs. So let's replace `Invoke-WebRequest` with `Invoke-RestMethod`
+
+[click] As soon as we do so, we no longer need to handle the raw output and convert it from JSON. `Invoke-RestMethod` does that for us, so we can make this simpler
+
+[click] that removed some lines.
+
+[click] now, while we are at it, we can just output the content of the pages property. Let's see...
+
+[click] OK. Here is a list of Wikipedia articles and their properties. Just a reminder of what we asked for: a list of articles that link to the article on computer shells.
+
+[click] How North Korea got in here is a bit of a mystery. We'll take care of that later.
+
+-->
 
 ---
+
+````md magic-move
+
+```powershell
+$pages
+```
 
 ```powershell
 $pages | Format-Table
 ```
 
-<div v-click>
-```text{all}{maxHeight:'26.5rem'}
+````
+
+```text{hide|all}{maxHeight:'26.5rem'}
      id key               title             excerpt
      -- ---               -----             -------                                                                                                                         
   21255 North_Korea       North Korea       North Korea, officially the Democratic People's Republic of Korea (DPRK), is a country in East Asia. It constitutes the norther…
@@ -845,7 +866,16 @@ $pages | Format-Table
 6097297 Linux             Linux             Linux (/ˈlɪnʊks/ LIN-uuks) is a family of open-source Unix-like operating systems based on the Linux kernel, an operating syste…
   22194 Operating_system  Operating system  An operating system (OS) is system software that manages computer hardware and software resources, and provides common services…
 ```
-</div>
+
+<!--
+
+Back to objects. Because you can pass objects on the input and output streams, you can pipe objects to and from cmdlets. Say we want something different than the list format we saw earlier with properties on the left and values on the right. Thankfully, there are formatting cmdlets available. To format as a table...
+
+[click] we can pipe to the Format-Table cmdlet.
+
+[click] Here is the result. Fairly readable with this data. For each entry in the $pages array, there is a row in the table.
+
+-->
 
 ---
 
@@ -853,8 +883,7 @@ $pages | Format-Table
 $pages | Get-Member
 ```
 
-<div v-click>
-```text{all}{maxHeight:'26.5rem'}
+```text{hide|all|9-16|5-8|7}{maxHeight:'26.5rem'}
    TypeName: System.Management.Automation.PSCustomObject
 
 Name          MemberType   Definition
@@ -871,12 +900,25 @@ matched_title NoteProperty object matched_title=null
 thumbnail     NoteProperty System.Management.Automation.PSCustomObject thumbnail=@{mimetype=image/svg+xml; width=60; height=30; duration=; url=//upload.wikimedia.org/wikip…
 title         NoteProperty string title=North Korea
 ```
-</div>
+
+<!--
+
+The cmdlet Get-Member will list all the properties and methods of a given object. 
+
+[click] Very useful for discovery and learning.
+
+[click] We can see the properties of the response from Wikipedia: description, excerpt, title, and so on.
+
+[click] Also the methods...
+
+[click] This one looks interesting: GetType. Let's try it
+
+-->
 
 ---
 
 ```powershell
-$body.pages.GetType()
+$pages.GetType()
 ```
 
 <div v-click>
@@ -886,6 +928,12 @@ IsPublic IsSerial Name                                     BaseType
 True     True     Object[]                                 System.Array
 ```
 </div>
+
+<!--
+
+Ok, it is an array of objects. No surprises there, I suppose
+
+-->
 
 ---
 
@@ -903,8 +951,7 @@ $pages | ConvertTo-Html -Fragment -Property Key, Title, Description
 ```
 ````
 
-<div v-click>
-```html
+```html {hide|all}
 <table>
 <colgroup><col/><col/><col/></colgroup>
 <tr><th>key</th><th>title</th><th>description</th></tr>
@@ -915,7 +962,18 @@ $pages | ConvertTo-Html -Fragment -Property Key, Title, Description
 <tr><td>Operating_system</td><td>Operating system</td><td>Software that manages computer hardware resources</td></tr>
 </table>
 ```
-</div>
+
+<!--
+
+So, an array of objects can be piped to other interesting cmdlets, such as ConvertTo-Html.
+
+[click] ConvertTo-Html normally produces a full html page, with head and body. with the -Fragment parameter we can get just the table in this case.
+
+[click] And select just the properties we want from the properties we discovered when we ran the previous command.
+
+[click] And here is our output. Let's see it in the browser for the sake of prettiness...
+
+-->
 
 ---
 
@@ -928,6 +986,16 @@ $pages | ConvertTo-Html -Fragment -Property Key, Title, Description
 <tr><td>Linux</td><td>Linux</td><td>Family of Unix-like operating systems</td></tr>
 <tr><td>Operating_system</td><td>Operating system</td><td>Software that manages computer hardware resources</td></tr>
 </table>
+
+<!--
+
+As you can begin to tell, this is not a minimalist shell. It is like a cross between a shell that does shell things, and a kitchen-sink-included programming language like Python or Go.
+
+As a bit of a Pythonista, I am used to that. I like it, and it made it easier for me to warm up to Powershell. Without installing a single external module, there is already so much available.
+
+I assume that in 20 or 30 years, Powershell people will be trying to figure out how to deprecate pieces that are antiquated and irrelevant, and getting all kinds of community criticism for it. Comes with the kitchen-sink approach, I suppose.
+
+-->
 
 ---
 
@@ -945,20 +1013,42 @@ $pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
 $pages
 ```
 
-```powershell
+```powershell {all|2}
 $pages = $pages | Select-Object -Last 4 | Sort-Object -Property key
 $pages.title
 ```
 ````
 
-<div v-click>
-```text
+```text {hide|all|3|2|1}
 Linux
 MacOS
 Microsoft Windows
 Operating system
 ```
-</div>
+
+<!--
+
+A couple other piping operations:
+
+Let's narrow it down to the most relevant results. Goodbye, North Korea.
+
+[click] Now let's sort it by the `key` property
+
+[click] we will output the pages 
+
+[click] But let's just show the titles. 
+
+[click] Note this convenient way of selecting a property from each element in an array. No verbose iteration necessary.
+
+[click] And there we have it. You probably wondered what ordering the Sort-Object cmdlet uses. As you can see hear, 
+
+[click] it always sorts 
+
+[click] by reverse order of
+
+[click] operating system superiority
+
+-->
 
 ---
 layout: none
@@ -1217,6 +1307,54 @@ function Enter-RabbitHole
 ```
 ````
 
+<!--
+
+And here is the fun of shell scripting. Up until this point, we may have tried some things from the command prompt, built the pipeline out a bit. And now, we can take those same commands and build it out as a script to be re-used later. These lines you see can be saved to a file and run and re-run with Powershell.
+
+But let's polish this thing and make it a legit Powershell cmdlet with parameters, help, and so on.
+
+[click] First, let's make it a function. We'll name it using Powershell's Verb-Noun convention. Find- is an approved verb...
+
+[click] Nah, let's name it Enter-RabbitHole. Wikipedia seems so benign and general, yet it sucks me into hours-long click-spirals, so there you go.
+
+[click] Next we parameterize the query and limit, rather than hard coding those values
+
+[click] And set a default limit of 5 in case the user doesn't specify a limit
+
+[click] Then we can specify types to add a bit of validation. Now the query must be a string and the limit must be an integer number.
+
+[click] While we are at it, make the query mandatory. If left out, the cmdlet will actually prompt for the query.
+
+[click] Of course, it would be nice if the query could be piped in, and specifying ValueFromPipeline is all we need for that.
+
+[click] And some help text in case the user wants to know more about what the query is for.
+
+[click] Once we change the syntax a bit on the title selection,  we can use Select-Object to select the title property
+
+[click] and add a calculated property, in this case the URL built out from the article key. Almost there...
+
+[click] Add in some documentation for Help
+
+[click] including definitions for each parameter
+
+[click] I am sure this has been bothering some of you: we really need to URL encode the input. Easy to do, and actually points to entire world opening before us. That uri class is a .NET class. So, not only does Powershell bring its own kitchen sink, it has available this giant library of functionality.
+
+[click] Summarize what we have just done to make this a cmdlet of our own: made it a function
+
+[click] Added parameters
+
+[click] Used the kitchen sink, such as the very powerful Invoke-RestMethod cmdlet
+
+[click] dipped into .NET as needed
+
+[click] used the pipeline for cleaning and sorting
+
+[click] added comment-based help
+
+[click] that's our script; let's see it in action
+
+-->
+
 ---
 layout: center
 ---
@@ -1226,7 +1364,7 @@ layout: center
 </SlidevVideo>
 
 ---
-layout: fact
+layout: end
 ---
 
 Thank you
