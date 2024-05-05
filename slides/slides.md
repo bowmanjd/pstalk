@@ -1,12 +1,14 @@
 ---
 theme: default
 title: A Reluctant Powersheller
+author: Jonathan Bowman
 info: |
   ## A Reluctant Powersheller
-  A story of learning and using Powershell
+  How I unintentionally learned to love Powershell
 
   ps.bowmanjd.com
 highlighter: shiki
+presenter: dev
 drawings:
   presenterOnly: true
   persist: false
