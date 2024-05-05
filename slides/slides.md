@@ -65,7 +65,7 @@ hideInToc: true
 ---
 
 <SlidevVideo autoplay autoreset='slide'>
-  <source src="intro.webm" type="video/webm" />
+  <source src="/intro.webm" type="video/webm" />
 </SlidevVideo>
 
 ---
@@ -375,7 +375,7 @@ layout: center
 ---
 
 <SlidevVideo autoplay autoreset='slide'>
-  <source src="pshelp.webm" type="video/webm" />
+  <source src="/pshelp.webm" type="video/webm" />
 </SlidevVideo>
 
 <!--
@@ -1362,7 +1362,7 @@ layout: center
 ---
 
 <SlidevVideo autoplay autoreset='slide'>
-  <source src="rabbithole.webm" type="video/webm" />
+  <source src="/rabbithole.webm" type="video/webm" />
 </SlidevVideo>
 
 ---
