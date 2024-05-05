@@ -8,7 +8,9 @@ info: |
 
   ps.bowmanjd.com
 highlighter: shiki
+selectable: true
 presenter: dev
+download: true
 drawings:
   presenterOnly: true
   persist: false
@@ -28,14 +30,14 @@ hideInToc: true
 
 ## How I unintentionally learned to love Powershell
 
-ps.bowmanjd.com
+[ps.bowmanjd.com](https://ps.bowmanjd.com)
 
 <!--
 It is an honor to be here. I am Jonathan Bowman. I am a hobbyist developer. I have also been a teacher, preacher, web developer, IT director, CRM consultant, and now I write SQL all day at Cargas. Cargas is the most humane and thoughtful place I have ever worked with technology, and I am proud to be there. I get excited about Vim, Linux, Python, bash, Rust, even trying to learn a little Go these days (the language, not the game). And today I am sharing with you about Powershell, which I am ambivalent about. But I have grown to a place where I have to say: I like Powershell. I recommend Powershell for a variety of use cases. And I genuinely enjoy working with the syntax.
 -->
 
 ---
-class: text-center
+layout: two-cols
 hideInToc: true
 ---
 
@@ -45,7 +47,17 @@ hideInToc: true
 
 </div>
 
-# ps.bowmanjd.com
+# [ps.bowmanjd.com](https://ps.bowmanjd.com)
+
+::right::
+
+- [github.com/bowmanjd/pstalk](https://github.com/bowmanjd/pstalk)
+- <span class="email">jonathan@bowmanjd<i>.obfusticinator.</i>.com</span>
+- [bowmanjd.com](https://bowmanjd.com)
+- [dev.to/bowmanjd](https://dev.to/bowmanjd/)
+- [linkedin.com/in/jonathan-d-bowman](https://www.linkedin.com/in/jonathan-d-bowman/)
+- [twitter.com/jdbowman](https://twitter.com/jdbowman)
+- [fosstodon.org/@bowmanjd](https://fosstodon.org/@bowmanjd)
 
 <!--
 
