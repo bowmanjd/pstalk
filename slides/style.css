@@ -20,3 +20,7 @@ code.language-ansi {
   font-size: 300% !important;
   line-height: 200% !important;
 }
+
+.email i {
+  display: none;
+}
