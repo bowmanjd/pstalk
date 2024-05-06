@@ -61,7 +61,7 @@ hideInToc: true
 
 <!--
 
-This is the link to this slide deck as well as a repo with a couple example scripts in it, and my contact info. Feel free to reach out any time.
+This is the link to this slide deck as well as a few links my online presences. Feel free to reach out any time. Note the companion repo to this presentation if you are interested.
 
 -->
 
@@ -69,7 +69,41 @@ This is the link to this slide deck as well as a repo with a couple example scri
 layout: full
 ---
 
-<Toc minDepth="1" maxDepth="1" style="font-size: 60%"></Toc>
+<Toc minDepth="1" maxDepth="1"></Toc>
+
+<!--
+
+Here is our itinerary this evening
+
+-->
+
+---
+layout: section
+---
+
+# What is a Shell?
+
+<!--
+
+Let's start with some basics
+
+-->
+
+---
+layout: quote
+---
+
+> I searched my .bash_history for the line with the highest ratio of special characters to regular alphanumeric characters, and the winner was: `cat out.txt | grep -o "[[(].*[])][^)]]*$"` ... I have no memory of this and no idea what I was trying to do, but I sure hope it worked.
+
+([Randall Munroe](https://m.xkcd.com/1638/))
+
+<!--
+
+Possibly the most popular shell today is bash, or maybe zsh. These shells have been around a few decades, and the tools that you might use along with them could have been around even longer. When such an ecosystem evolves over time it can get to be somewhat complex, intimidating. At some level, all of us are script kiddies: find something online, paste it in. Yay it works, maybe, but we don't know why.
+
+If that is as advanced as you get with your shell, you are not alone.
+
+-->
 
 ---
 layout: center
@@ -80,19 +114,15 @@ hideInToc: true
   <source src="/intro.webm" type="video/webm" />
 </SlidevVideo>
 
----
-layout: quote
----
+<!--
 
-> I searched my .bash_history for the line with the highest ratio of special characters to regular alphanumeric characters, and the winner was: `cat out.txt | grep -o "[[(].*[])][^)]]*$"` ... I have no memory of this and no idea what I was trying to do, but I sure hope it worked.
+But let's not get too intimidated or paralyzed... we can wade in. Let's start simple.
 
-([Randall Munroe](https://m.xkcd.com/1638/))
+The shell is glue. Minimally, it helps you navigate filesystems, and get content into and out of files.
 
----
-layout: section
----
+There are many shells, and one of them is Powershell. You may be surprised at how similar basic operations look between Powershell and others shells. You might be surprised, too, that Powershell works fine as a Linux shell, as demonstrated here.
 
-# What is a Shell?
+-->
 
 ---
 layout: two-cols-header
@@ -115,6 +145,18 @@ A terminal \[emulator\] is the device or software application that "wraps" the s
 - [Alacritty](https://alacritty.org/)
 - [Wezterm](https://wezfurlong.org/wezterm/index.html)
 - [Hyper](https://hyper.is/)
+
+<!--
+
+It is easy to confuse shell and terminal. A terminal is the pretty thing that you run the shell in. It should be pretty. There are ugly ones. Don't use those.
+
+Some, like Mac Terminal, Windows Terminal, or Gnome Terminal, probably came with your OS. Any of those three are pretty good.
+
+There are some hip newer terminals that run on Windows, Mac and Linux, such as those on the right.
+
+None of these are shells, though.
+
+-->
 
 ---
 layout: two-cols-header
@@ -141,6 +183,11 @@ An interpreter that provides a command-line user interface for operating systems
 - [oils](https://www.oilshell.org/)
 - [so many more...](https://github.com/oilshell/oil/wiki/Alternative-Shells)
 
+<!--
+
+A shell is an interpreter to interact with or run scripts with. Some nice old ones are on the left. If you run Mac, you likely use zsh. If you run Linux, you may run bash or possibly zsh, or something. If you live on the front of the bell curve, you might use one from the right column.
+
+-->
 ---
 layout: image
 image: /shell-unix-programming-env.png
@@ -186,7 +233,7 @@ layout: two-cols
 
 When we use a command-line shell, it is easy to think that all the tools we are using are baked into the shell. But you can change your shell, and keep using the very same grep, and the very same pager you are used to.
 
-This is both a benefit and a problem. Love the personalization, but when it comes to sharing... How to you know which grep your friends have?
+This is both a benefit and a problem. Love the personalization, but when it comes to sharing... How to you know which grep your friends have? On the other hand, kitchen-sink-included shells like Powershell, Nushell, or xonsh have a future maintenance burden, because they include so many commands. You decide.
 
 -->
 
@@ -195,6 +242,12 @@ layout: section
 ---
 
 # Why another shell?
+
+<!--
+
+So, since there are already so many shells, why another? (Powershell came out in 2006, so it is almost 19 years old already, and not terribly new. But let's engage this question anyway)
+
+-->
 
 ---
 
@@ -214,11 +267,41 @@ Why make another `________________` ?
 
 </v-clicks>
 
+<!--
+
+Do you ever get option fatigue when you enter the cereal aisle in the grocery store? The number of choices are wearying. So it is natural to question if we really need more choices.
+
+[click] I have often heard the question posed about Python web frameworks
+
+[click] but it certainly can be asked of shells
+
+[click] and other important matters
+
+If we were just asking this question of Windows, the answer is very clear: CMD prompt stinks. But let's get a little philosophical for a moment...
+
+[click] People create new tools that scratch a necessary itch. I'd hate to stifle that.
+
+[click] Ever made a new web framework in Python or Go? It is terribly fun.
+
+[click] Monopolies, hegemonies, and consolidation do not always serve people well
+
+[click] When faced with myriad choices, it is okay to stick with one thing without needing to try all the others. Right, Javascript developers?
+
+If you know you like Cinnamon Life, just go down that aisle and get what you know you need. You'll be fine. (I am more of an overnight oats person myself)
+
+-->
+
 ---
 layout: section
 ---
 
 # The Windows Automation Gap
+
+<!--
+
+Let's talk about Windows for a little bit
+
+-->
 
 ---
 layout: image
@@ -251,6 +334,11 @@ layout: quote
 (Jeffrey Snover, inventor of Powershell, on how he came to Microsoft)
 
 <!--
+
+I am not the only one who had complaints.
+
+(Read quote)
+
 And so the story of Powershell begins.
 -->
 
@@ -348,7 +436,7 @@ A few things I noticed about Powershell right from the beginning:
 
 - It was comprehensive. All the levers are available. Unlike earlier experiences, where you could do some automation, but for real control you had to open a window and grip the mouse. Powershell commands covered every feature, and sometimes more than the UI.
 - I had a network engineer who started using Powershell. That was a head-scratcher for me because he knew perfectly good Python. One day he comments something like, "you know, I really like Powershell. I can really get things done."
-- I think he was referring to the systemic coverage I already called out, but also the ease with which one can learn Powershell because it is elegantly and deliberately designed
+- I think he was referring to the systemic coverage I already called out, but also the ease with which one can learn Powershell because its design is fairly elegant and deliberate
 
 -->
 
@@ -362,6 +450,14 @@ A few things I noticed about Powershell right from the beginning:
 - Example: `Import-Csv`
 - Example: `Add-Content`
 - (the word "cmdlets" has great SEO)
+
+<!--
+
+A Powershell command is called a cmdlet. Which is a silly name but is great for targets web searches, since no other shell calls them that.
+
+Cmdlets follow a naming convention of verb-noun. Do this to that.
+
+-->
 
 ---
 
@@ -623,7 +719,7 @@ In my experience, the Powershell community has been impressively welcoming and h
 layout: section
 ---
 
-# Wikipedia search client
+# Attractive language features
 
 <!-- 
 
