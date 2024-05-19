@@ -455,7 +455,7 @@ A few things I noticed about Powershell right from the beginning:
 
 A Powershell command is called a cmdlet. Which is a silly name but is great for targets web searches, since no other shell calls them that.
 
-Cmdlets follow a naming convention of verb-noun. Do this to that.
+Cmdlets follow a naming convention of verb-noun. Do this to that. Like Import-Csv, Add-Content
 
 -->
 
@@ -474,7 +474,7 @@ Cmdlets follow a naming convention of verb-noun. Do this to that.
 
 <!--
 
-Powershell has a ton of very verbose and very discoverable documentation, built in, updateable, and online.
+Powershell has a ton of very verbose and very discoverable documentation, built in, updateable, and online. Note that if you launch Powershell for the first time, your documentation will be a little thin. You can run Update-Help to fill this out.
 
 -->
 
@@ -500,6 +500,12 @@ layout: fact
 
 [learn.microsoft.com/powershell/](https://learn.microsoft.com/powershell/){style="font-size: 200%"}
 
+<!--
+
+There is a ton of up-to-date online help as well. And well organized.
+
+-->
+
 ---
 layout: image-right
 image: /ps-month.jpg
@@ -510,7 +516,7 @@ backgroundSize: contain
 
 <!--
 
-I am currently reading this now and find I am learning new things in every chapter. But it is designed to be hospitable for those that have no programming experience.
+There are some good books as well. I am currently reading this now and find I am learning new things in every chapter. But it is designed to be hospitable for those that have no programming experience.
 
 -->
 
@@ -535,6 +541,8 @@ layoutClass: gap-16
 [Advanced Tools & Scripting with PowerShell 3.0](https://learn.microsoft.com/en-us/shows/advpowershell3/)
 <br>([also on Youtube](https://www.youtube.com/watch?v=K4YDHFalAK8&list=PL7T06JEc5PF6kusr3cg6eYqCAiU6ezVj5&index=1))
 
+<!-- if you know someone who wants to learn Powershell, likes watching videos, especially if they are in Windows IT, these older videos are still quite relevant.
+-->
 
 ---
 layout: image-left
@@ -547,6 +555,12 @@ backgroundSize: contain
 - [Read online for free](https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction)
 - [Also on LeanPub](https://leanpub.com/powershell101)
 
+<!--
+
+An ebook that Microsoft publishes online for free
+
+-->
+
 ---
 layout: image-right
 image: /learnps.png
@@ -557,6 +571,12 @@ backgroundSize: contain
 
 [learnxinyminutes.com/docs/powershell](https://learnxinyminutes.com/docs/powershell)
 
+<!--
+
+As with most programming languages, though, if you come from a programming background, just drink from the firehose at learnxinyminutes. You can grasp the main language features quickly.
+
+-->
+
 ---
 layout: image
 image: /powershell-marketing.png
@@ -565,8 +585,8 @@ backgroundSize: contain
 
 <!--
 
+- How do you market a shell? I don't know. Unsure that Microsoft knows either, but here it is.
 - So Powershell is intended to be easy to learn for Windows Admins who may have little experience with coding or command line.
-- what does a marketing team do when told to promote a command-line shell?
 - "Those who don't automate are doomed to repeat themselves" -- love this quote. Is true to the powershell community. It isn't competing so much with other shells, as it is competing with the practice of "clicking through your problems" which is rampant in Windows admin culture.
 
 -->
@@ -590,6 +610,12 @@ layout: section
 
 # Cross-platform, Open Source
 
+<!--
+
+When Powershell was open-sourced, I was pleasantly surprised. It makes it a lot more flexible, certainly. Also makes another use case possible.
+
+-->
+
 ---
 
 ## Use case #2
@@ -602,7 +628,8 @@ layout: section
 
 I often find myself in a software shop where I am the lone Linux person. So, if I am surrounded by Mac people, and I want to share a script, I will make sure it works in zsh, or whatever runtimes I can count on, such as Python or Node.
 
-If surrounded by Windows people, powershell is a great choice. They can just run it. And I can still develop it on my OS of choice.
+If surrounded by Windows people, powershell is a great choice. They can just run it. And I can still develop it on my OS of choice. I often write a Powershell script on Linux and share it with Windows users.
+
 -->
 
 ---
@@ -611,6 +638,12 @@ If surrounded by Windows people, powershell is a great choice. They can just run
 
 - [github.com/PowerShell/PowerShell](https://github.com/PowerShell/PowerShell)
 - [github.com/MicrosoftDocs/PowerShell-Docs](https://github.com/MicrosoftDocs/PowerShell-Docs)
+
+<!--
+
+Both the code and the docs are open source and accept PRs.
+
+-->
 
 ---
 
@@ -623,7 +656,7 @@ If surrounded by Windows people, powershell is a great choice. They can just run
 - Nix: `nix-shell -p powershell`
 
 <!--
-Powershell 5 is pre-installed on Windows. But the current cross-platform version is Powershell 7. This can be installed on Windows with winget, Mac with brew, or you can run in docker. Microsoft has instructions for Linux, as it varies by distribution, such as Debian, Ubuntu, Redhat or derivative, Alpine, Arch, etc.
+Powershell 5.1 is pre-installed on Windows. But the current cross-platform version is Powershell 7. This can be installed on Windows with winget, Mac with brew, or you can run in docker. Microsoft has instructions for Linux, as it varies by distribution, such as Debian, Ubuntu, Redhat or derivative, Alpine, Arch, etc.
 -->
 
 ---
@@ -649,6 +682,9 @@ layout: fact
 ## Use case #3
 
 You or an accomplice needs to accomplish a specific task for which Powershell has a relevant and well-maintained module or script.
+
+
+<!-- Powershell might be the right choice if it has the right module available. Want to interface with Azure? Manipulate an Excel document? Powershell is a well-respected for both of those tasks, for instance. -->
 
 ---
 layout: two-cols-header
@@ -677,6 +713,12 @@ layout: two-cols-header
 - [Pode](https://badgerati.github.io/Pode/) (web framework!?)
 - [Az](https://learn.microsoft.com/en-us/powershell/azure/)
 - [PSScriptAnalyzer](https://github.com/PowerShell/PSScriptAnalyzer)
+
+<!--
+
+Here is but a taste of some popular and well-maintained modules
+
+-->
 
 ---
 layout: section
