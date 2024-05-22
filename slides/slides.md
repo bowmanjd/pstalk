@@ -33,7 +33,7 @@ hideInToc: true
 [ps.bowmanjd.com](https://ps.bowmanjd.com)
 
 <!--
-It is an honor to be here. I am Jonathan Bowman. I am a hobbyist developer. I have also been a teacher, preacher, web developer, IT director, CRM consultant, and now I write SQL all day at Cargas. Cargas is the most humane and thoughtful place I have ever worked with technology, and I am proud to be there. I get excited about Vim, Linux, Python, bash, Rust, even trying to learn a little Go these days (the language, not the game). And today I am sharing with you about Powershell, which I am ambivalent about. But I have grown to a place where I have to say: I like Powershell. I recommend Powershell for a variety of use cases. And I genuinely enjoy working with the syntax.
+It is an honor to be here. I am Jonathan Bowman. I am a hobbyist developer. I have been a teacher, preacher, web developer, IT director, software project manager, and now I write SQL all day at Cargas. Cargas is the most humane and thoughtful place I have ever worked with technology, and I am proud to be there. There are other things I am proud of. I use Vim, I like Linux, I am pretty good with Python and bash. I am getting better with Rust. And today I am sharing with you about Powershell, which I am certainly not ashamed of but it does usually occur to me to brag about it. But I have grown to a place where I have to say: I like Powershell. I'll even recommend Powershell for a variety of use cases. And I genuinely enjoy working with the syntax. I don't know that I will convince you to use Powershell this evening; I don't think I'll even try to. But I do hope you might leave here with a renewed eagerness to engage the command-line shell, whatever that might mean in your context.
 -->
 
 ---
@@ -99,7 +99,9 @@ layout: quote
 
 <!--
 
-Possibly the most popular shell today is bash, or maybe zsh. These shells have been around a few decades, and the tools that you might use along with them could have been around even longer. When such an ecosystem evolves over time it can get to be somewhat complex, intimidating. At some level, all of us are script kiddies: find something online, paste it in. Yay it works, maybe, but we don't know why.
+Just to be different, I thought that instead of showing you an xkcd comic, I would just show the alt-text. To make the point that shells have a reputation of being intimidatingly complex.
+
+Possibly the most popular shell today is bash, or maybe zsh. These shells have been around a few decades, and the tools that you might use along with them could have been around even longer. When such an ecosystem evolves over time it can get to be somewhat complex, intimidating. I'll bet at some level, all of us are script kiddies: find something online, paste it in. Yay it works, maybe, but we don't know why.
 
 If that is as advanced as you get with your shell, you are not alone.
 
@@ -185,7 +187,7 @@ An interpreter that provides a command-line user interface for operating systems
 
 <!--
 
-A shell is an interpreter to interact with or run scripts with. Some nice old ones are on the left. If you run Mac, you likely use zsh. If you run Linux, you may run bash or possibly zsh, or something. If you live on the front of the bell curve, you might use one from the right column.
+A shell is an interpreter to interact with or run scripts with. Some nice old ones are on the left. If you run Mac, you likely use zsh. If you run Linux, you may run bash or possibly zsh. If you live on the front of the bell curve, you might use one from the right column.
 
 -->
 ---
@@ -195,10 +197,12 @@ backgroundSize: contain
 ---
 
 <!--
+A shell is not just an interactive interpreter; it is also a scripting language.
+
 From the 1984 book _The Unix Programming Environmment_ by Brian Kernighan and Rob Pike:
 
-- Although most users think of the shell as an interactive command interpreter, it is really a programming language in which each statement runs a command. Because it must satisfy both the interactive and programming aspects of command execution, it is a strange language, shaped as much by history as by design. [Both an interactive interpreter, like a REPL (read-eval-print loop), and a programming language. And it evolves over time due to dynamic needs.]
-- The range of its application leads to an unsettling quantity of detail in the language, but you don't need to understand every nuance to use it effectively. [Some good encouragement, there. Just wade in or even dive in]
+- Although most users think of the shell as an interactive command interpreter, it is really a programming language in which each statement runs a command. Because it must satisfy both the interactive and programming aspects of command execution, it is a strange language, shaped as much by history as by design.
+- The range of its application leads to an unsettling quantity of detail in the language, but you don't need to understand every nuance to use it effectively. [Some good encouragement, there. Just wade in or even dive in, to your shell of choice.]
 
 -->
 
@@ -233,7 +237,7 @@ layout: two-cols
 
 When we use a command-line shell, it is easy to think that all the tools we are using are baked into the shell. But you can change your shell, and keep using the very same grep, and the very same pager you are used to.
 
-This is both a benefit and a problem. Love the personalization, but when it comes to sharing... How to you know which grep your friends have? On the other hand, kitchen-sink-included shells like Powershell, Nushell, or xonsh have a future maintenance burden, because they include so many commands. You decide.
+This is both a benefit and a problem. Love the personalization of mixing and matching tools, but on the other hand when it comes to sharing scripts... How do you know which grep your friends have? On the other hand, kitchen-sink-included shells like Powershell, Nushell, or xonsh have an abundance of built-in tools, but that introduces a future maintenance burden for the project. You decide.
 
 -->
 
@@ -271,23 +275,25 @@ Why make another `________________` ?
 
 Do you ever get option fatigue when you enter the cereal aisle in the grocery store? The number of choices are wearying. So it is natural to question if we really need more choices.
 
-[click] I have often heard the question posed about Python web frameworks
+[click] I have often heard this question posed about Python web frameworks
 
 [click] but it certainly can be asked of shells
 
 [click] and other important matters
 
-If we were just asking this question of Windows, the answer is very clear: CMD prompt stinks. But let's get a little philosophical for a moment...
+If we were just asking this question of Windows, the answer is very clear: CMD prompt is not great. But let's get a little philosophical for a moment...
 
 [click] People create new tools that scratch a necessary itch. I'd hate to stifle that.
 
 [click] Ever made a new web framework in Python or Go? It is terribly fun.
 
-[click] Monopolies, hegemonies, and consolidation do not always serve people well
+[click] Monopolies, hegemonies, and consolidation: do they really serve people well, or is there something to be said for foment, for creative divergence, for experimentation?
 
-[click] When faced with myriad choices, it is okay to stick with one thing without needing to try all the others. Right, Javascript developers?
+[click] When faced with myriad choices, it is okay to stick with one thing without needing to try all the others. I think Javascript developers have learned to function this way, or they'd be constantly paralyzed or distracted.
 
-If you know you like Cinnamon Life, just go down that aisle and get what you know you need. You'll be fine. (I am more of an overnight oats person myself)
+If you know you like Cinnamon Life, just go down that aisle and get what you know you need. You'll be fine. Or experiment with some other flavors, knowing you can always fallback on Cinnamon Life.
+
+With Powershell, I am inviting you to taste something different. Don't let that distract or immobilize you from being creative and productive with the tools you have.
 
 -->
 
@@ -299,7 +305,7 @@ layout: section
 
 <!--
 
-Let's talk about Windows for a little bit
+Here is my Powershell story. Let's talk about Windows for a little bit
 
 -->
 
@@ -310,9 +316,9 @@ backgroundSize: contain
 ---
 
 <!--
-My Powershell story starts before Powershell. And while no one's Powershell experience needs to start with Microsoft Windows anymore, mine did.
+My Powershell story starts before Powershell.
 
-In 2004, in my mid-twenties, I stumbled into a job as an IT technician in a school; responsibilities included managing Windows servers. Years before that, I had been bitten by the Linux bug, and was already obsessed with configuring everything with text files, and automating anything with the likes of Bash, Perl, Python. So I came to the world of Windows Servers itching to automate. And the story was not good.
+In 2004, I stumbled into a job as an IT technician in a school; responsibilities included managing Windows servers. Years before that, I had been bitten by the Linux bug, and was already use to configuring everything with text files, and automating anything with Bash, Python, maybe Perl. So I came to the world of Windows Servers itching to automate. And the story was not good.
 
 Bottom line: Windows had a miles-wide product gap: it was very difficult, and sometimes impossible, to easily, repeatably, deterministically automate all the things. In fact, sometimes I needed to resort to automating by sending mouse clicks and keyboard shortcuts to specific windows. Microsoft said Windows had a shell. But they always meant a graphical shell. Which looks pretty, but is quite difficult to automate.
 -->
@@ -420,7 +426,7 @@ Powershell is much bigger than that, as I find out later. But if you do a casual
 
 There are a lot of people who do not write code. Who do not think they can write code. And they start because they want to make their system administration a little easier. And Powershell is that gentle on-ramp for writing computer programs to make life better.
 
-There are people who might not pick up bash, but they might just pick up Powershell. The same argument could be made for Python or Ruby. Or a newer shell like fish, Nushell, etc.
+In addition, and I recognize this is probably controversial, there are people who might not pick up bash, but they might just pick up Powershell. The same argument could be made for Python or Ruby. Or a newer shell like fish, Nushell, etc.
 
 -->
 
@@ -432,11 +438,10 @@ layout: section
 
 <!--
 
-A few things I noticed about Powershell right from the beginning:
+A couple things I noticed about Powershell right from the beginning:
 
 - It was comprehensive. All the levers are available. Unlike earlier experiences, where you could do some automation, but for real control you had to open a window and grip the mouse. Powershell commands covered every feature, and sometimes more than the UI.
-- I had a network engineer who started using Powershell. That was a head-scratcher for me because he knew perfectly good Python. One day he comments something like, "you know, I really like Powershell. I can really get things done."
-- I think he was referring to the systemic coverage I already called out, but also the ease with which one can learn Powershell because its design is fairly elegant and deliberate
+- There also is this ease with which one can learn Powershell because its design is fairly elegant and deliberate
 
 -->
 
@@ -453,7 +458,7 @@ A few things I noticed about Powershell right from the beginning:
 
 <!--
 
-A Powershell command is called a cmdlet. Which is a silly name but is great for targets web searches, since no other shell calls them that.
+For example, the way commands are named. A Powershell command is called a cmdlet. Which is a silly name but is great for targeted web searches, since no other shell calls them that.
 
 Cmdlets follow a naming convention of verb-noun. Do this to that. Like Import-Csv, Add-Content
 
@@ -480,6 +485,7 @@ Powershell has a ton of very verbose and very discoverable documentation, built 
 
 ---
 layout: center
+hide: true
 ---
 
 <SlidevVideo autoplay autoreset='slide'>
@@ -599,8 +605,7 @@ backgroundSize: contain
 
 <!--
 
-- The API for windows infrastructure
-- Powershell is open source and cross-platform
+- Interesting that Powershell marketing emphasizes that it is open source and cross-platform. Let's talk about that.
 
 -->
 
@@ -612,7 +617,7 @@ layout: section
 
 <!--
 
-When Powershell was open-sourced, I was pleasantly surprised. It makes it a lot more flexible, certainly. Also makes another use case possible.
+When Powershell was open-sourced and also compiled to various platforms, I was pleasantly surprised. It makes it a lot more flexible, certainly. Also makes another use case possible.
 
 -->
 
@@ -622,7 +627,7 @@ When Powershell was open-sourced, I was pleasantly surprised. It makes it a lot 
 
 - You want to share a shell script and trust that it will work on a variety of platforms, even Windows
 - Maybe you write a bash script _and_ a Powershell script...
-- Or if all your friends already have Powershell...
+- Or if all your friends already have Powershell or can install it easily...
 
 <!--
 
@@ -765,9 +770,9 @@ layout: section
 
 <!-- 
 
-The language features themselves have caused me to warm up to Powershell more than anything. So I thought I would write and incredibly useful tool in front of your very eyes. And, as we go, highlight some bits of the language I have found attractive.
+The language features themselves have caused me to warm up to Powershell more than anything. So I thought I would write an not very necessary tool in front of your very eyes. And, as we go, highlight some bits of the language I have found attractive.
 
-So, let's build a Wikipedia search client
+So, let's build a command-line Wikipedia search client
 
 -->
 
