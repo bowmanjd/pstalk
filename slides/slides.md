@@ -52,7 +52,7 @@ hideInToc: true
 ::right::
 
 - [github.com/bowmanjd/pstalk](https://github.com/bowmanjd/pstalk)
-- <span class="email">jonathan@bowmanjd<i>.obfusticinator.</i>.com</span>
+- <span class="email">jonathan@bowma<i>.obfusticinator.</i>njd.com</span>
 - [bowmanjd.com](https://bowmanjd.com)
 - [dev.to/bowmanjd](https://dev.to/bowmanjd/)
 - [linkedin.com/in/jonathan-d-bowman](https://www.linkedin.com/in/jonathan-d-bowman/)
@@ -140,13 +140,15 @@ A terminal \[emulator\] is the device or software application that "wraps" the s
 - Windows Terminal
 - Gnome Terminal, Konsole, xterm, rxvt
 - Linux, Mac: [Warp](https://www.warp.dev/)
-- Linux, Mac: [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Linux, Mac, BSD: [Kitty](https://sw.kovidgoyal.net/kitty/)
 
 ::right::
 
 - [Alacritty](https://alacritty.org/)
 - [Wezterm](https://wezfurlong.org/wezterm/index.html)
 - [Hyper](https://hyper.is/)
+- [Extraterm](https://extraterm.org/)
+- [Tabby](https://tabby.sh/)
 
 <!--
 
@@ -452,8 +454,11 @@ A couple things I noticed about Powershell right from the beginning:
 - `Verb-Noun`
 - Find all the verbs with the `Get-Verb` command
 - Nouns might be anything
-- Example: `Import-Csv`
-- Example: `Add-Content`
+- Examples:
+  - `Import-Csv`
+  - `Add-Content`
+  - `Get-Process`
+  - `Out-File`
 - (the word "cmdlets" has great SEO)
 
 <!--
